@@ -1,0 +1,85 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <!-- Bootstrap -->
+    <!-- Latest compiled and minified css -->
+    <link rel="stylesheet" href="">
+
+    <!-- Optional theme  -->
+    <link rel="stylesheet" href="">
+
+    <!-- Medium style editor  -->
+    <script src=""></script>
+    <link rel="stylesheet" href="">
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- Fonts  -->
+</head>
+<body class="loader">
+  
+
+
+    <!--  Navbar -->
+    <nav class="navbar navbar-default techfont custom-navbar">
+        <div class="container">
+            <ul class="nav navbar-nav">
+            <li> <a class="navbar-brand bigbrand" href="{% url 'posts:all' %}">My Blog</a></li>
+            <li><a href="{% url 'posts:about' %}">About</a></li>
+            <li><a href="https://www.github.com"></a></li>
+            <li><a href="https://www.linkedin.com"></a></li>
+           </ul>
+
+
+           <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'posts:new' %}">New Post</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'posts:new' %}">Drafts</a>
+                </li>
+                <li>
+                    <a href="{% url 'posts:new' %}">Logout</a>
+                </li>
+                <li>
+                    <a>Welcome: {{ user.username}}</a>
+                </li>
+                    {% else %}
+
+                    <li>
+                        <a href="{% url 'accounts:login' %}" class="nav navbar-right" ><span class="glyphicon glyphicon-user"></span></a>
+                    </li>
+
+                  {% endif %}
+
+           </ul>
+        </div>
+
+    </nav>
+
+    <!--  CONTENT BLOCK  -->
+    
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog_posts">
+                    {% block content %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ 
+</body>
+</html>
